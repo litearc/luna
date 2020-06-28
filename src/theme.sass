@@ -1,0 +1,476 @@
+// color palette :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+$cA: #141515
+$cB: #1b1c1c
+$cC: #1d1e1f
+$cD: #262829
+$cE: #2e3031
+$cF: #2b2d2e
+$cG: #323435
+$cH: #343536
+$cI: #37393a
+$cJ: #393b3d
+$cK: #3b3d3d
+$cL: #424445
+$cM: #454849
+$cN: #494b4d
+$cO: #4a4e50
+$cP: #5d6062
+$cQ: #7e8184
+$cR: #94989a
+$cS: #9ba2a8
+$cT: #ebf0f5
+
+$c-blue: hsl(210, 60%, 60%)
+$c-green: hsl(130, 60%, 60%)
+$c-red: hsl(0, 60%, 60%)
+$c-gold: hsl(45, 60%, 60%)
+$c-prim: $c-blue
+$c-trans: rgb(0, 0, 0, 0)
+$c-semitrans: rgb(0, 0, 0, .5)
+
+// define colors for various elements from palette
+$c-text: $cR
+$c-text-dim: $cO
+$c-text-hl: $cT
+$c-bg-pane: $cD
+$c-bg-dark: $cB
+$c-border: $cL
+
+// constants :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+$dur-fade: .2s
+$tab-width: 140px
+$icon-width: 24px
+$font-size: 12px
+
+// font ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+@font-face
+  font-family: main
+  src: url(regular.ttf)
+
+@font-face
+  font-family: main
+  font-weight: bold
+  src: url(regular.ttf)
+
+@mixin font
+  font-family: main
+  font-size: $font-size
+  font-variant-numeric: tabular-nums
+  letter-spacing: 0.05em
+  line-height: 1.5
+  color: $c-text
+
+// font options
+.bold
+  font-weight: bold
+.color-blue
+  color: $c-blue
+.color-green
+  color: $c-green
+.color-red
+  color: $c-red
+.color-gold
+  color: $c-gold
+
+// sizing ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+.full
+  width: 100%
+  height: 100%
+.full-w
+  width: 100%
+.full-h
+  height: 100%
+.w-1-2
+  width: 50%
+.w-1-3
+  width: 33.33333333%
+.zero-size
+  width: 0
+  height: 0
+
+// flexbox :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+.flex-col
+  display: flex
+  flex-direction: column
+.flex-row
+  display: flex
+  flex-direction: row
+
+.align-bl
+  align-items: baseline
+.align-center
+  align-items: center
+.align-initial
+  align-items: initial
+
+.fixed
+  flex-grow: 0
+  flex-shrink: 0
+.expand
+  flex-grow: 1
+  flex-shrink: 1
+.no-grow
+  flex-grow: 0
+.no-shrink
+  flex-shrink: 0
+.can-grow
+  flex-grow: 1
+.can-shrink
+  flex-shrink: 1
+.min-0
+  min-width: 0
+  min-height: 0
+
+// align-items controls the alignment of items in the cross-axis, so centering
+// items horizontally or vertically depends on whether the flex direction is row
+// or column
+.center
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+  height: 100%
+
+.hcenter
+  display: flex
+  width: 100%
+  height: 100%
+  &.flex-col
+    align-items: center
+  &:not(.flex-col)
+    justify-content: center
+
+.vcenter
+  display: flex
+  width: 100%
+  height: 100%
+  &.flex-col
+    justify-content: center
+  &:not(.flex-col)
+    align-items: center
+
+// adds space to the left of all non-first items in a flex row,
+// or top of all non-first items in a flex col
+.flex-row.spaced-8px > :not(.expand) ~ :not(*:first-child)
+  margin-left: 8px
+.flex-col.spaced-8px > :not(.expand) ~ :not(*:first-child)
+  margin-top: 8px
+
+// grid ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+.grid
+  display: grid
+
+  &.hgap-0
+    grid-column-gap: 0
+  &.vgap-0
+    grid-row-gap: 0
+  &.hgap-20px
+    grid-column-gap: 20px
+  &.vgap-20px
+    grid-row-gap: 20px
+
+  // indexed like matrices
+  & > .g11
+    grid-column-start: 1
+    grid-column-end: 2
+    grid-row-start: 1
+    grid-row-end: 2
+  & > .g12
+    grid-column-start: 2
+    grid-column-end: 3
+    grid-row-start: 1
+    grid-row-end: 2
+  & > .g13
+    grid-column-start: 3
+    grid-column-end: 4
+    grid-row-start: 1
+    grid-row-end: 2
+  & > .g21
+    grid-column-start: 1
+    grid-column-end: 2
+    grid-row-start: 2
+    grid-row-end: 3
+  & > .g22
+    grid-column-start: 2
+    grid-column-end: 3
+    grid-row-start: 2
+    grid-row-end: 3
+  & > .g23
+    grid-column-start: 3
+    grid-column-end: 4
+    grid-row-start: 2
+    grid-row-end: 3
+  & > .g31
+    grid-column-start: 1
+    grid-column-end: 2
+    grid-row-start: 3
+    grid-row-end: 4
+  & > .g32
+    grid-column-start: 2
+    grid-column-end: 3
+    grid-row-start: 3
+    grid-row-end: 4
+  & > .g33
+    grid-column-start: 3
+    grid-column-end: 4
+    grid-row-start: 3
+    grid-row-end: 4
+
+// ui elements :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// colors
+$c-bg-input: $cC
+$c-bg-message: $cE
+$c-bg-dropdown: $cC
+
+// text input
+@mixin input
+  @include font
+  background-color: $c-bg-input
+  border: 1px solid $c-bg-pane
+  border-radius: 2px
+  color: $c-text-hl
+  padding: 4px
+
+  &.invisible
+    background-color: $c-bg-pane
+  &::placeholder
+    color: $c-text-dim
+  &:hover
+    background-color: $c-bg-input
+  &:focus
+    outline: none
+    background-color: $c-bg-input
+    border: 1px solid $c-prim
+
+// button
+$button-std-w: 100px
+button
+  @include font
+
+  background-color: $cM
+  border: none
+  color: $cT
+  padding: 4px 12px
+  text-align: center
+  text-decoration: none
+  display: inline-block
+  border-radius: 3px
+  cursor: pointer
+  outline: none
+
+  &:hover
+    background-color: $cO
+  &.highlighted
+    background-color: darken($c-prim, 20%)
+    &:hover
+      background-color: darken($c-prim, 10%)
+
+@mixin dy-1
+  position: relative
+  top: 1px // font-awesome icons are a little high by default
+.dy-1
+  @include dy-1
+
+@mixin -dy-1
+  position: relative
+  top: -1px // font-awesome icons are a little high by default
+.-dy-1
+  @include -dy-1
+
+.icon
+  &.selected
+    color: $c-prim
+  &.inactive
+    color: $c-text-dim
+.icon-w
+  width: 16px
+
+// icon text (text with an icon to the left)
+.it-icon
+  position: relative
+  top: 1px // font-awesome icons are a little high by default
+  &.selected
+    color: $c-prim
+  display: inline-block
+  text-align: center
+  width: $icon-width
+
+// paddings + margins ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// paddings
+.px-8px
+  padding-left: 8px
+  padding-right: 8px
+.py-8px
+  padding-top: 8px
+  padding-bottom: 8px
+.pl-4px
+  padding-left: 4px
+.pr-4px
+  padding-right: 4px
+.pl-8px
+  padding-left: 8px
+.pr-8px
+  padding-right: 8px
+
+// margins
+.mt-2px
+  margin-top: 2px
+.mb-2px
+  margin-bottom: 2px
+.-mt-2px
+  margin-top: -2px
+.-mb-2px
+  margin-bottom: -2px
+.mt-4px
+  margin-top: 4px
+.mb-4px
+  margin-bottom: 4px
+.mt-8px
+  margin-top: 8px
+.mb-8px
+  margin-bottom: 8px
+
+.ml-2px
+  margin-left: 2px
+.mr-2px
+  margin-right: 2px
+.ml-4px
+  margin-left: 4px
+.mr-4px
+  margin-right: 4px
+.ml-8px
+  margin-left: 8px
+.mr-8px
+  margin-right: 8px
+
+.mx-8px
+  margin-left: 8px
+  margin-right: 8px
+.my-8px
+  margin-top: 8px
+  margin-bottom: 8px
+
+.margin-auto
+  margin: auto
+
+// miscellaneous :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// mainly for debugging
+.border-red
+  border: 1px solid $c-red
+.border-blue
+  border: 1px solid $c-blue
+.border-green
+  border: 1px solid $c-green
+.border-gold
+  border: 1px solid $c-gold
+
+.hdivider
+  width: 100%
+  margin: 12px 0
+  border: 1px solid $cH
+.vdivider
+  height: 100%
+  margin: 0 12px
+  border: 1px solid $cH
+
+.block
+  display: block
+.inline
+  display: inline
+.inline-block
+  display: inline-block
+.flex
+  display: flex
+
+.float-left
+  float: left
+.float-right
+  float: right
+
+.text-center
+  text-align: center
+
+.no-pointer-events, .no-pointer-events *
+  pointer-events: none
+
+.text-dim
+  color: $c-text-dim
+.hover-hl:hover
+  color: $c-text-hl
+
+// add space between children elements
+.hspaced-8px > :not(*:first-child)
+  margin-left: 8px
+.vspaced-8px > :not(*:first-child)
+  margin-top: 8px
+
+// overflow
+.overflow-auto
+  overflow: auto
+.overflow-hidden
+  overflow: hidden
+.overflow-scroll
+  overflow: scroll
+.overflow-x-hidden
+  overflow-x: hidden
+.overflow-x-scroll
+  overflow-x: scroll
+.overflow-y-hidden
+  overflow-y: hidden
+.overflow-y-scroll
+  overflow-y: scroll
+
+.pos-static
+  position: static
+.pos-relative
+  position: relative
+.pos-fixed
+  position: fixed
+.pos-absolute
+  position: absolute
+.pos-sticky
+  position: sticky
+
+.-t-2px
+  top: -2px
+.t-2px
+  top: +2px
+
+// line height
+.line-height-1_5
+  line-height: 1.5
+.line-height-1_75
+  line-height: 1.75
+
+// white-space
+.ws-nowrap
+  white-space: nowrap
+
+// custom scrollbars
+::-webkit-scrollbar
+  width: 8px
+  height: 8px
+.no-scrollbars::-webkit-scrollbar
+  width: 0px
+  height: 0px
+::-webkit-scrollbar-track
+  background: $c-bg-dark
+::-webkit-scrollbar-thumb
+  background: $c-text
+::-webkit-scrollbar-thumb:hover
+  background: $c-prim
+
+// app-specific styles :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+.key-value-grid
+  display: grid
+  grid-template-columns: 1fr 1fr 0fr
+  margin-top: 8px
+  grid-column-gap: 4px
+  grid-row-gap: 0px
+  align-items: center
+
+

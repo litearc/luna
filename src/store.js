@@ -1,5 +1,5 @@
-import { writable } from 'svelte/store';
+import { writable } from 'svelte/store'
 
-export const demoStore = writable('Hello Svelte!');
+export const test = writable('hello')
 
-module.exports = { demoStore };
+module.exports = { test }
