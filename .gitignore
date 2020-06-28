@@ -1,3 +1,5 @@
-dist
+dist/bundle.css
+dist/bundle.js
+dist/bundle.js.map
 node_modules
 tags

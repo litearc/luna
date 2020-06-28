@@ -43,17 +43,8 @@ $icon-width: 24px
 $font-size: 12px
 
 // font ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-@font-face
-  font-family: main
-  src: url(regular.ttf)
-
-@font-face
-  font-family: main
-  font-weight: bold
-  src: url(regular.ttf)
-
 @mixin font
-  font-family: main
+  font-family: main // defined in global.css file
   font-size: $font-size
   font-variant-numeric: tabular-nums
   letter-spacing: 0.05em
@@ -472,5 +463,3 @@ button
   grid-column-gap: 4px
   grid-row-gap: 0px
   align-items: center
-
-

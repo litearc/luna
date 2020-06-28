@@ -1,0 +1,9 @@
+/*
+ * for some reason, local resource files don't get referenced in bundle.css -
+ * this is probably a problem with rollup, but I can't figure out how to solve
+ * it, so for now, use this file instead.
+ */
+@font-face {
+  font-family: main;
+  src: url(fonts/ns.ttf);
+}

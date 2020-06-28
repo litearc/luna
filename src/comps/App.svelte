@@ -1,19 +1,38 @@
 <script>
+  import Intro from './Intro.svelte'
   const app = require("electron").remote.app
   const os = require("os")
+  let x = 0
+  function inc(){ x++ }
 </script>
 
 <template lang='pug'>
   main
-    p hello
+    #app.center
+      +if('x == 0')
+        span(on:mousedown='{inc}') hello {x}
+        Intro()
+        +else()
+          span world {x}
 </template>
 
 <!-- global style for entire app -->
-<style lang='sass' global>
-@font-face
-  font-family: main
-  src: url(./regular.ttf)
-p
-  color: red
-  font-family: main
+<style lang='sass'>
+  @import ../theme
+
+  :global(*)
+    box-sizing: border-box
+    user-select: none
+
+  #app
+    width: 100vw
+    height: 100vh
+    background-color: #222
+
+    // for some reason, `position: relative` (along with `overflow: hidden`)
+    // is needed to prevent the tooltip from expanding the div
+    position: relative // allows absolute position of subelements
+    overflow: hidden
+
+    @include font
 </style>

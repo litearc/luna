@@ -18,7 +18,7 @@ export default {
     svelte({
       dev: !production,
       css: css => {
-        css.write('dist/bundle.css');
+        css.write('dist/bundle.css', false);
       },
       preprocess: autoPreprocess(),
     }),
