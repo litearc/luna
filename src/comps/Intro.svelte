@@ -1,13 +1,16 @@
 <script>
+  import Icon from '../ui/Icon.svelte'
 </script>
 
 <template lang='pug'>
-  #intro
+  #root
+    div New File
+    div New Project
+    div Open File / Project
+    Icon(icon='test')
 </template>
 
 <style lang='sass'>
-  #intro
+  #root
     border: 1px solid red
-    width: 100px
-    height: 100px
 </style>

@@ -1,4 +1,20 @@
 <script>
+  /* import FontMetrics from 'fontmetrics' */
+  /* const WebFont = require('webfontloader') */
+  /* WebFont.load({ */
+  /*   google: { */
+  /*     families: ['Nunito Sans'] */
+  /*   } */
+  /* }); */
+  /* const metrics = FontMetrics({ */
+  /*   fontFamily: 'Nunito Sans', */
+  /*   // Optional (defaults) */
+  /*   fontWeight: 'normal', */
+  /*   fontSize: 200, */
+  /*   origin: 'baseline' */
+  /* }) */
+  /* console.log(metrics) */
+
   import Intro from './Intro.svelte'
   const app = require("electron").remote.app
   const os = require("os")

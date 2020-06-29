@@ -20,6 +20,8 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^5.0.5",
+    "fa-svelte": "^3.1.0",
+    "fontmetrics": "^1.0.0",
     "npm-run-all": "^4.1.5",
     "pug": "^3.0.0",
     "rollup": "^1.16.2",
@@ -30,6 +32,11 @@
     "rollup-plugin-terser": "^6.1.0",
     "sass": "^1.26.9",
     "svelte": "^3.5.3",
-    "svelte-preprocess": "^3.9.10"
+    "svelte-preprocess": "^3.9.10",
+    "webfontloader": "^1.6.28"
+  },
+  "dependencies": {
+    "install": "^0.13.0",
+    "npm": "^6.14.5"
   }
 }
