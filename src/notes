@@ -1,0 +1,26 @@
+<script>
+  import Intro from './Intro.svelte'
+  const app = require("electron").remote.app
+  const os = require("os")
+  let x = 0
+  function inc(){ x++ }
+</script>
+
+<template lang='pug'>
+  main
+    #app.center
+      +if('x == 0')
+        span(on:mousedown='{inc}') hello {x}
+        Intro()
+        +else()
+          span world {x}
+</template>
+
+<template>
+  <div class='root'>
+    <div class='item' on:mousedown={ () => setItem("A") }>
+      <Icon ref='icon' icon='file-plus'/>
+      <span>New File</span>
+    </div>
+  </div>
+</template>

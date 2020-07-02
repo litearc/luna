@@ -36,6 +36,8 @@
     "webfontloader": "^1.6.28"
   },
   "dependencies": {
+    "@fortawesome/free-regular-svg-icons": "^5.13.1",
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "install": "^0.13.0",
     "npm": "^6.14.5"
   }

@@ -1,35 +1,11 @@
 <script>
-  /* import FontMetrics from 'fontmetrics' */
-  /* const WebFont = require('webfontloader') */
-  /* WebFont.load({ */
-  /*   google: { */
-  /*     families: ['Nunito Sans'] */
-  /*   } */
-  /* }); */
-  /* const metrics = FontMetrics({ */
-  /*   fontFamily: 'Nunito Sans', */
-  /*   // Optional (defaults) */
-  /*   fontWeight: 'normal', */
-  /*   fontSize: 200, */
-  /*   origin: 'baseline' */
-  /* }) */
-  /* console.log(metrics) */
-
   import Intro from './Intro.svelte'
-  const app = require("electron").remote.app
-  const os = require("os")
-  let x = 0
-  function inc(){ x++ }
 </script>
 
 <template lang='pug'>
   main
     #app.center
-      +if('x == 0')
-        span(on:mousedown='{inc}') hello {x}
-        Intro()
-        +else()
-          span world {x}
+      Intro()
 </template>
 
 <!-- global style for entire app -->
