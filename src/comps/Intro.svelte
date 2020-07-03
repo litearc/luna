@@ -1,20 +1,17 @@
 <script>
   import Icon from '../ui/Icon.svelte'
-  function setItem(v){
-    console.log(v)
-  }
-  const test = v => () => console.log('test ' + v)
+  export let option = null
 </script>
 
 <template lang='pug'>
   #root
-    .item(on:mousedown!="{()=>setItem('A')}")
+    .item(on:mousedown!="{ () => option = 1 }")
       Icon(ref='icon' icon='file-plus')
       span New File
-    .item(on:mousedown!="{test('33')}")
+    .item(on:mousedown!="{ () => option = 2 }")
       Icon(ref='icon' icon='folder')
       span New Project
-    .item
+    .item(on:mousedown!="{ () => option = 3 }")
       Icon(ref='icon' icon='folder-plus')
       span Open File / Project
 </template>

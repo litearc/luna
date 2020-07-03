@@ -1,11 +1,18 @@
 <script>
   import Intro from './Intro.svelte'
+  import Select from '../ui/Select.svelte'
+  let pick
 </script>
 
 <template lang='pug'>
   main
-    #app.center
-      Intro()
+    #app
+      +if('pick == null')
+        .center
+          Intro(bind:option='{pick}')
+        +else()
+          .center
+            Select()
 </template>
 
 <!-- global style for entire app -->
