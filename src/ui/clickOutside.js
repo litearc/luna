@@ -1,12 +1,17 @@
 // Dispatch event on click outside of node
-// taken from: https://svelte.dev/repl/0ace7a508bd843b798ae599940a91783?version=3.16.7
+// taken (adapted) from: https://svelte.dev/repl/0ace7a508bd843b798ae599940a91783?version=3.16.7
 
 export default function clickOutside(node) {
   
   const handleClick = event => {
     if (node && !node.contains(event.target) && !event.defaultPrevented) {
       node.dispatchEvent(
-        new CustomEvent('clickoutside', node)
+        new CustomEvent('clickoutside', {
+					detail: {
+						node, // element clicked outside of
+						target: event.target, // element clicked on
+					}
+				})
       )
     }
   }

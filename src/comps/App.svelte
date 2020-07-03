@@ -34,4 +34,8 @@
     overflow: hidden
 
     @include font
+
+  #shifter
+    height: 200px
+    border: 1px solid $c-green
 </style>
