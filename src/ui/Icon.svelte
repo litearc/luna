@@ -38,5 +38,7 @@
     viewBox='0 0 24 24'
     fill='currentColor'
     style='position: relative; top: {top}px'
+    on:click
+    on:mousedown
   ) {@html svgs[icon]}
 </template>

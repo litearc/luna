@@ -18,7 +18,7 @@
 
 <template>
   <div class='root'>
-    <div class='item' on:mousedown={ () => setItem("A") }>
+    <div class='item' on:mousedown!={ () => setItem("A") }>
       <Icon ref='icon' icon='file-plus'/>
       <span>New File</span>
     </div>

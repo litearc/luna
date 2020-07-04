@@ -1,23 +1,18 @@
 <script>
-  import {
-    beforeUpdate,
-    createEventDispatcher,
-    onDestroy,
-    onMount,
-    tick
-  } from 'svelte'
-
+  import { createEventDispatcher, onMount } from 'svelte'
   import clickOutside from './clickOutside'
   import Icon from './Icon.svelte'
 
-  export let
-    items = ['itemA', 'itemB', 'itemC', 'itemD', 'itemE', 'itemF'] // list of string or array (of list) types
-
-  for (let i = 0; i < 40; i++)
-    items.push('A')
+  const dispatch = createEventDispatcher()
+  export let items // list of String
+  export let index // current index in list
+  export let ref
 
   let show = 'hidden'
-  function toggle(){ show = (show == 'visible') ? 'hidden' : 'visible' }
+  function toggle(){
+    show = (show == 'visible') ? 'hidden' : 'visible'
+    calcDropHY()
+  }
   function hide(ev){
     let { node, target } = ev.detail
     // If clicked on the dropdown menu, don't close.
@@ -28,7 +23,7 @@
   }
 
   let dropdownH, dropdownY
-  onMount(() => {
+  function calcDropHY(){
     let sel = document.getElementById('select')
       , dd = document.getElementById('dropdown')
     let rect = sel.getBoundingClientRect()
@@ -41,21 +36,28 @@
     // choose whichever direction (top or bottom) has more space.
     let dir = (selY+selH+ddH > winH && selY > winH-selY-selH) ? 'top' : 'bottom'
     let availableH = (dir == 'top') ? selY : winH-selY-selH
-    dropdownH = Math.min(ddH, availableH)
+    dropdownH = Math.min(ddH, availableH) + 2
     dropdownY = (dir == 'top') ? -dropdownH : selH
-    // console.log(`dir: ${dir}, ddH: ${dropdownH}, selY: ${selY}`)
-  })
+  }
+  onMount(() => { calcDropHY() })
+
+  $: text = items[index]
+  function clickItem(i){    
+    index = i
+    show = 'hidden'
+    dispatch('selected', i)
+  }
 </script>
 
 <template lang='pug'>
-  #root.pos-relative
+  #root.inline-block.pos-relative({ref})
     #select(use:clickOutside on:click='{toggle}' on:clickoutside='{hide}')
-      span Select
+      span {text}
       .expand
       Icon(icon='caret-down')
     #dropdown(style='visibility: {show}; height: {dropdownH}px; top: {dropdownY}px')
       +each('items as item, i')
-        .item {item}
+        .item(on:click!="{ () => clickItem(i) }") {item}
 </template>
 
 <style lang='sass'>
@@ -63,24 +65,28 @@
 
   #select
     width: 100%
-    min-width: 200px
-    padding-top: 4px
-    padding-bottom: 4px
+    border-radius: 4px
+    padding: 4px 8px 4px 12px
     align-items: baseline
-    border: 1px solid $c-red
-    display: flex
+    display: inline-flex
+    background-color: $cB
+    &:hover
+      background-color: $cE
 
   #dropdown
     z-index: 100
     width: 100%
-    border: 1px solid $c-blue
+    border-radius: 4px
+    background-color: $cH
+    border: 1px solid $c-border
+    padding: 4px 12px 4px 12px
     display: block
     position: absolute
     overflow-y: auto
     
   .item
-    margin-top: 2px
-    margin-bottom: 2px
+    padding-top: 2px
+    padding-bottom: 2px
     &:hover
       color: $c-text-hl
 </style>

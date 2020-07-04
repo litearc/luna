@@ -1,6 +1,6 @@
 <script>
   import Intro from './Intro.svelte'
-  import Select from '../ui/Select.svelte'
+  import NewFile from './NewFile.svelte'
   let pick
 </script>
 
@@ -11,8 +11,8 @@
         .center
           Intro(bind:option='{pick}')
         +else()
-          .center
-            Select()
+          .center.flex-col
+            NewFile()
 </template>
 
 <!-- global style for entire app -->
@@ -34,8 +34,4 @@
     overflow: hidden
 
     @include font
-
-  #shifter
-    height: 200px
-    border: 1px solid $c-green
 </style>
