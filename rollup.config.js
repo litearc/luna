@@ -31,5 +31,7 @@ export default {
      */
     commonjs(),
   ],
-  watch: false,
+  watch: {
+    clearScreen: false,
+  },
 };

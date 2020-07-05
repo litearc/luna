@@ -2,13 +2,22 @@
   import { createEventDispatcher, onMount } from 'svelte'
   import clickOutside from './clickOutside'
   import Icon from './Icon.svelte'
-
   const dispatch = createEventDispatcher()
-  export let items // list of String
-  export let index // current index in list
-  export let ref
+
+  export
+  let items // list of String
+    , index // current index in list
+    , ref
+    , style = ''
+  let clas
+  export { clas as class }
 
   let show = 'hidden'
+    , dropdownH
+    , dropdownY
+    , sel
+    , dd
+
   function toggle(){
     show = (show == 'visible') ? 'hidden' : 'visible'
     calcDropHY()
@@ -16,22 +25,16 @@
   function hide(ev){
     let { node, target } = ev.detail
     // If clicked on the dropdown menu, don't close.
-    let dd = document.getElementById('dropdown')
-    if (dd.contains(target))
-      return
+    if (dd.contains(target)) return
     show = 'hidden'
   }
 
-  let dropdownH, dropdownY
   function calcDropHY(){
-    let sel = document.getElementById('select')
-      , dd = document.getElementById('dropdown')
     let rect = sel.getBoundingClientRect()
     let winH = window.innerHeight
       , selH = sel.offsetHeight
       , selY = rect.top
-      , ddH = dd.scrollHeight
-    
+      , ddH = dd.scrollHeight 
     // By default, place dropdown menu under the select box - if it doesn't fit,
     // choose whichever direction (top or bottom) has more space.
     let dir = (selY+selH+ddH > winH && selY > winH-selY-selH) ? 'top' : 'bottom'
@@ -51,18 +54,30 @@
 
 <template lang='pug'>
   #root.inline-block.pos-relative({ref})
-    #select(use:clickOutside on:click='{toggle}' on:clickoutside='{hide}')
+    #select(
+      bind:this='{sel}'
+      class='{clas}'
+      style='{style}'
+      use:clickOutside on:click='{toggle}'
+      on:clickoutside='{hide}'
+    )
       span {text}
       .expand
       Icon(icon='caret-down')
-    #dropdown(style='visibility: {show}; height: {dropdownH}px; top: {dropdownY}px')
+    #dropdown(
+      bind:this='{dd}'
+      style=`
+        visibility: {show};
+        height: {dropdownH}px;
+        top: {dropdownY}px;
+      `
+    )
       +each('items as item, i')
-        .item(on:click!="{ () => clickItem(i) }") {item}
+        .item(on:click!='{ () => clickItem(i) }') {item}
 </template>
 
 <style lang='sass'>
   @import ../theme
-
   #select
     width: 100%
     border-radius: 4px
@@ -83,7 +98,7 @@
     display: block
     position: absolute
     overflow-y: auto
-    
+
   .item
     padding-top: 2px
     padding-bottom: 2px

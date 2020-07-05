@@ -5,5 +5,11 @@
  */
 @font-face {
   font-family: main;
-  src: url(fonts/ns.ttf);
+  src: url(fonts/regular.ttf);
+}
+
+@font-face {
+  font-family: main;
+  font-weight: bold;
+  src: url(fonts/bold.ttf);
 }

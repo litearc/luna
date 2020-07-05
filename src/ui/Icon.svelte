@@ -1,11 +1,15 @@
 <script>
-  export let icon, ref
+  export
+  let icon
+    , ref
+    , style = ''
+  let clas
+  export { clas as class }
 
   // Material Design icons are designed on a 24 x 24 grid, with 2 px of padding,
   // i.e. the bottom of the icon end at 22 px, so we want to shift the icon down
   // by 2 px (for a 24 px font size) to align the baseline with the text.
-  let top = 2*12/24 // 12 is font-size
-  
+  let top = 2*12/24 // 12 is font-size  
   let svgs = {
     'caret-down': '<path d="M0 0h24v24H0z" fill="none"/><path d="M7 10l5 5 5-5z"/>',
     'caret-left': '<path d="M14 7l-5 5 5 5V7z"/><path d="M24 0v24H0V0h24z" fill="none"/>',
@@ -33,12 +37,21 @@
 <template lang='pug'>
   svg(
     {ref}
+    class='{clas}'
     width='12'
     height='12'
     viewBox='0 0 24 24'
     fill='currentColor'
-    style='position: relative; top: {top}px'
+    style=`
+      {style}
+      position: relative;
+      top: {top}px;
+    `
     on:click
     on:mousedown
   ) {@html svgs[icon]}
 </template>
+
+<style lang='sass'>
+  @import ../theme
+</style>

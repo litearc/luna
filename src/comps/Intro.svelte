@@ -5,23 +5,19 @@
 
 <template lang='pug'>
   #root
-    .item(on:mousedown!="{ () => option = 1 }")
+    .item(on:mousedown!='{ () => option = 1 }')
       Icon(ref='icon' icon='file-plus')
-      span New File
-    .item(on:mousedown!="{ () => option = 2 }")
+      span.ml-4px New File
+    .item(on:mousedown!='{ () => option = 2 }')
       Icon(ref='icon' icon='folder')
-      span New Project
-    .item(on:mousedown!="{ () => option = 3 }")
+      span.ml-4px New Project
+    .item(on:mousedown!='{ () => option = 3 }')
       Icon(ref='icon' icon='folder-plus')
-      span Open File / Project
+      span.ml-4px Open File / Project
 </template>
 
 <style lang='sass'>
   @import ../theme
-
-  span
-    margin-left: $icon-text-space
-
   .item:hover
     color: $c-text-hl
 </style>
