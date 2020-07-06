@@ -1,6 +1,6 @@
 <script>
+  import Main from './Main.svelte'
   import Intro from './Intro.svelte'
-  import NewFile from './NewFile.svelte'
   let option = null
 </script>
 
@@ -12,7 +12,7 @@
           Intro(bind:option)
         +else()
           .center.flex-col
-            NewFile()
+            Main()
 </template>
 
 <style lang='sass'>

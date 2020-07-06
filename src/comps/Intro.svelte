@@ -5,10 +5,10 @@
 
 <template lang='pug'>
   #root
-    .item(on:mousedown!='{ () => option = 1 }')
+    .item.mb-4px(on:mousedown!='{ () => option = 1 }')
       Icon(ref='icon' icon='file-plus')
       span.ml-4px New File
-    .item(on:mousedown!='{ () => option = 2 }')
+    .item.mb-4px(on:mousedown!='{ () => option = 2 }')
       Icon(ref='icon' icon='folder')
       span.ml-4px New Project
     .item(on:mousedown!='{ () => option = 3 }')

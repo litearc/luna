@@ -4,12 +4,11 @@
     , placeholder = ''
     , ref
     , style = ''
-    , value
+    , value = ''
   let clas
   export { clas as class }
 
   let el
-  $: text = (value == undefined) ? '' : value
   function keydown(ev){
     if (ev.key == 'Enter')
       el.blur()
@@ -25,7 +24,7 @@
     placeholder='{placeholder}'
     style='{style}'
     type='text'
-    value='{text}'
+    bind:value
     on:blur
     on:focus
     on:keydown='{keydown}'

@@ -84,7 +84,7 @@
     padding: 4px 8px 4px 12px
     align-items: baseline
     display: inline-flex
-    background-color: $cB
+    background-color: $cC
     &:hover
       background-color: $cE
 
