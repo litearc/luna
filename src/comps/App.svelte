@@ -1,7 +1,14 @@
 <script>
+  import { it, tab } from '../js/store'
   import Main from './Main.svelte'
   import Intro from './Intro.svelte'
   let option = null
+  function start(i){
+    $tab[0] = { type: 'new', name: 'Untitled' }
+    $tab = $tab // do I need this?
+    $it = 0
+    option = i
+  }
 </script>
 
 <template lang='pug'>
@@ -9,9 +16,9 @@
     #app
       +if('option == null')
         .center
-          Intro(bind:option)
+          Intro(on:optionpicked='{start}')
         +else()
-          .center.flex-col
+          .full
             Main()
 </template>
 

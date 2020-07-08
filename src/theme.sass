@@ -263,15 +263,25 @@ button
 
 @mixin dy-1
   position: relative
-  top: 1px // font-awesome icons are a little high by default
+  top: 1px
+@mixin dy-2
+  position: relative
+  top: 8px
 .dy-1
   @include dy-1
+.dy-2
+  @include dy-2
 
 @mixin -dy-1
   position: relative
-  top: -1px // font-awesome icons are a little high by default
+  top: -1px
+@mixin -dy-2
+  position: relative
+  top: -2px
 .-dy-1
   @include -dy-1
+.-dy-2
+  @include -dy-2
 
 .icon
   &.selected
