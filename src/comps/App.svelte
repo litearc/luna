@@ -4,8 +4,14 @@
   import Intro from './Intro.svelte'
   let option = null
   function start(i){
-    $tab[0] = { type: 'new', name: 'Untitled' }
-    $tab = $tab // do I need this?
+    // $tab[0] = { type: 'new', name: 'Untitled' }
+    // tab.update( v => {
+    //   v[0] = { type: 'new', name: 'Untitled' }
+    //   return v
+    // })
+    tab.set( $tab[0] = {type: 'new', name: 'Untitled'}, $tab )
+    console.log($tab)
+    // $tab = $tab // do I need this?
     $it = 0
     option = i
   }
