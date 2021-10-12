@@ -36,7 +36,7 @@
   "dependencies": {
     "@fortawesome/free-regular-svg-icons": "^5.13.1",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
-    "electron": "^9.0.5",
+    "electron": "^11.5.0",
     "install": "^0.13.0",
     "npm": "^6.14.5",
     "png-js": "^1.0.0",
